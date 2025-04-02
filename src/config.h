@@ -71,6 +71,8 @@ struct Config {
     // TODO(baijumeswani): Sharing env allocators across sessions leads to crashes on windows and iOS.
     //                     Identify the reason for the crash to enable allocator sharing by default.
     bool use_env_allocators{};
+    std::optional<bool> intra_op_allow_spinning; 
+    std::optional<bool> inter_op_allow_spinning; 
 
     std::vector<ProviderOptions> provider_options;
     std::optional<GraphOptimizationLevel> graph_optimization_level;
