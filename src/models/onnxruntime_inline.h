@@ -677,23 +677,23 @@ inline OrtSessionOptions& OrtSessionOptions::AppendExecutionProvider_CANN(const 
 }
 
 inline OrtSessionOptions& OrtSessionOptions::AppendExecutionProvider_VitisAI(
-  const std::unordered_map<std::string, std::string>& provider_options) {
-auto num_entries = provider_options.size();
-std::vector<const char*> keys, values;
-if (num_entries > 0) {
-  keys.reserve(num_entries);
-  values.reserve(num_entries);
+    const std::unordered_map<std::string, std::string>& provider_options) {
+  auto num_entries = provider_options.size();
+  std::vector<const char*> keys, values;
+  if (num_entries > 0) {
+    keys.reserve(num_entries);
+    values.reserve(num_entries);
 
-  for (const auto& entry : provider_options) {
-    keys.push_back(entry.first.c_str());
-    values.push_back(entry.second.c_str());
+    for (const auto& entry : provider_options) {
+      keys.push_back(entry.first.c_str());
+      values.push_back(entry.second.c_str());
+    }
   }
-}
 
-Ort::ThrowOnError(
-  Ort::api->SessionOptionsAppendExecutionProvider_VitisAI(this, keys.data(), values.data(), num_entries));
+  Ort::ThrowOnError(
+      Ort::api->SessionOptionsAppendExecutionProvider_VitisAI(this, keys.data(), values.data(), num_entries));
 
-return *this;
+  return *this;
 }
 
 inline OrtSessionOptions& OrtSessionOptions::AppendExecutionProvider(

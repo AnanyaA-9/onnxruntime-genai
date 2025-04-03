@@ -443,7 +443,7 @@ void Model::CreateSessionOptionsFromConfig(const Config::SessionOptions& config_
     fs::path custom_library_file_prefix{config_session_options.custom_ops_library.value()};
     session_options.RegisterCustomOpsLibrary(custom_library_file_prefix.c_str());
   }
-  
+
   if (config_session_options.graph_optimization_level.has_value()) {
     session_options.SetGraphOptimizationLevel(config_session_options.graph_optimization_level.value());
   }
@@ -535,15 +535,14 @@ void Model::CreateSessionOptionsFromConfig(const Config::SessionOptions& config_
       // Add Provider options
       std::unordered_map<std::string, std::string> provider_options_map;
       for (const auto& option : provider_options.options) {
-          provider_options_map[option.first] = option.second;
+        provider_options_map[option.first] = option.second;
       }
       try {
         session_options.AppendExecutionProvider_VitisAI(provider_options_map);
-      } catch (std::exception &e) {
+      } catch (std::exception& e) {
         throw std::runtime_error(e.what());
       }
-    } 
-    else
+    } else
       throw std::runtime_error("Unknown provider type: " + provider_options.name);
   }
 
