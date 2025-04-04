@@ -538,7 +538,7 @@ void Model::CreateSessionOptionsFromConfig(const Config::SessionOptions& config_
         provider_options_map[option.first] = option.second;
       }
       try {
-        session_options.AppendExecutionProvider_VitisAI(provider_options_map);
+        session_options.AppendExecutionProvider("VitisAI", provider_options_map);
       } catch (std::exception& e) {
         throw std::runtime_error(e.what());
       }
